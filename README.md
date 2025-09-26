@@ -5,4 +5,4 @@ This repository showcases some cybersecurity projects I have worked on, includin
 ## Table of Contents
 
 ### 1 Comand Line and Security Basics
-- [Basics](command_line_and_security_basics.md)
+- [Command line and security basics](Cybersecurity_Home_Lab/projects/command_line_and_security_basics.md)
