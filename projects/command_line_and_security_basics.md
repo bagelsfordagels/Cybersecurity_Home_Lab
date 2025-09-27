@@ -8,5 +8,5 @@
 
 # User Management
 
-## 1.) I switched to the root user to execute root commands without having to enter my password each time.
+## 1.) I switched to the root user to execute root commands without having to enter my password each time. You can see the terimal changed and has a # instead of a $.
 ![sudo_su](../images/sudo_su.png)
