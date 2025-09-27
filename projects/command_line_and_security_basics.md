@@ -16,7 +16,7 @@
 
 As you can see the adduser command has extra functionality and allows for a more complete user setup.
 
-## 3.) I swithed to sally as the user. 
+## 3.) I switched to sally as the user. 
 ![sally_su](../images/sally_su.png)
 
 Now you can see sally@UbuntuServer-Lab.
