@@ -13,3 +13,4 @@
 
 ## 2.) Next, I created two users. One with the useradd command and one with the adduser command.
 ![add_user](../images/adding_user.png)
+As you can see the adduser command has extra functionality and allows for a more complete user setup.
