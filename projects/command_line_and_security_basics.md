@@ -25,3 +25,7 @@ Now you can see sally@UbuntuServer-Lab.
 ![sally_perm](../images/sally_perm_denied.png)
 
 This is because sally does not have root permissions. 
+
+## 5.) I added the user earl with useradd. The -m flag adds a home directory for earl. Then, I deleted earl with userdel. The -r falg is a recursive delete.
+![user_del](../images/userdel.png)
+
