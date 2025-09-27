@@ -10,3 +10,6 @@
 
 ## 1.) I switched to the root user to execute root commands without having to enter my password each time. You can see the terimal changed and has a # instead of a $.
 ![sudo_su](../images/sudo_su.png)
+
+## 2.) Next, I created two users. One with the useradd command and one with the adduser command.
+![add_user](../images/adding_user.png)
