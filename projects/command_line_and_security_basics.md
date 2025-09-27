@@ -8,5 +8,5 @@
 
 # User Management
 
-## 1.) I witched to the root user to execute sys admin commands more easily
+## 1.) I switched to the root user to execute root commands without having to enter my password each time.
 ![sudo_su](../images/sudo_su.png)
