@@ -15,3 +15,13 @@
 ![add_user](../images/adding_user.png)
 
 As you can see the adduser command has extra functionality and allows for a more complete user setup.
+
+## 3.) I swithed to sally as the user. 
+![sally_su](../images/sally_su.png)
+
+Now you can see sally@UbuntuServer-Lab.
+
+## 4.) When trying to add a user as sally permission is denied.
+![sally_perm](../images/sally_perm_denied.png)
+
+This is because sally does not have root permissions. 
