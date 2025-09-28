@@ -66,8 +66,7 @@ Here you can see:
 
     -owner: mchughb
     -group owner: mchughb
-    -owner permissions: rwx
-    -group permissions:
-    rwx
-    -world permissions:
-    r-x
+    permissions:
+        -owner: rwx
+        -group: rwx
+        -world: r-x
