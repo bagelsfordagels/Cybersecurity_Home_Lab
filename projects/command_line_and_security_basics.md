@@ -71,7 +71,7 @@ Here you can see:
         -group: rwx
         -world: r-x
 
-### Next, within the lab1 directory, I created a bash script to print hello world to the console.
+### 10.) Next, within the lab1 directory, I created a bash script to print hello world to the console.
 ![helloWorld](../images/helloWorld.png)
 
 I had to change the permissions so the script couble be executed with chmod +x.
