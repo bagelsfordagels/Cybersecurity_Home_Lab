@@ -79,4 +79,5 @@ I had to change the permissions so the script couble be executed with chmod +x.
 ### 11.) I checked the permissions for the helloWorld script. The owner had rwx but the group and world only had r--. I then added group write and execute permissions.
 ![helloWorld](../images/ls-ls_helloWorld.png)
 
-
+### 12.) getfacl and setfacl are utilies to see and see access control information for files and directories. First I used get facl to see the ACL of helloWorld.sh. Then I used setfacl to allow sally to read and write helloWorld.sh. 
+![sally_rw-](../images/sally_rw-.png)
