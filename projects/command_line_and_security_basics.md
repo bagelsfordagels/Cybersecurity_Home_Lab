@@ -75,3 +75,8 @@ Here you can see:
 ![helloWorld](../images/helloWorld.png)
 
 I had to change the permissions so the script couble be executed with chmod +x.
+
+### 11.) I checked the permissions for the helloWorld script. The owner had rwx but the group and world only had r--. I then added group write and execute permissions.
+![helloWorld](../images/ls-ls_helloWorld.png)
+
+
