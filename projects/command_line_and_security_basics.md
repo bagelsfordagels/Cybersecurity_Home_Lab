@@ -39,7 +39,7 @@ This is because sally does not have root permissions.
 ### 7.) After logging out of root I checked my user id with the id command.
 ![id](../images/id.png)
 
-Here you can see all of the groups mchughb belongs to
+Here you can see all of the groups mchughb belongs to:
 
     -user id: 1000
     -group id: 1000
@@ -50,3 +50,9 @@ Here you can see all of the groups mchughb belongs to
     -plugdev
     -users
     -lpadmin
+
+### 8.) Next, I gave sally sudo privaledges and was then able to create a new user logged as her.
+![sudo_sally_hank](../images/sudo_sally_add_hank.png)
+
+### 8.) I created a new group called cybersec and added sally to the group. I then checked what groups sally belonged to with the groups command
+![cybersec](../images/cybersec_group_sally.png)
