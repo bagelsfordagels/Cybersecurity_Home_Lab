@@ -51,7 +51,7 @@ Here you can see all of the groups mchughb belongs to:
     -users
     -lpadmin
 
-### 8.) Next, I gave sally sudo privaledges and was then able to create a new user logged as her.
+### 8.) Next, I gave sally sudo priviledges and was then able to create a new user logged as her.
 ![sudo_sally_hank](../images/sudo_sally_add_hank.png)
 
 ### 8.) I created a new group called cybersec and added sally to the group. I then checked what groups sally belonged to with the groups command
