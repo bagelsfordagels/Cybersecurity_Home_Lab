@@ -54,12 +54,12 @@ Here you can see all of the groups mchughb belongs to:
 ### 8.) Next, I gave sally sudo priviledges and was then able to create a new user logged as her.
 ![sudo_sally_hank](../images/sudo_sally_add_hank.png)
 
-### 8.) I created a new group called cybersec and added sally to the group. I then checked what groups sally belonged to with the groups command
+### 8.) I created a new group called cybersec and added sally to the group. I then checked what groups sally belonged to with the groups command.
 ![cybersec](../images/cybersec_group_sally.png)
 
 # Perminission and Access Control Lists
 
-### 9.) I created a new directory called lab1 and checked the file permissions of the newely created directory with ls -ld lab1
+### 9.) I created a new directory called lab1 and checked the file permissions of the newely created directory with ls -ld lab1.
 ![mkdir_lab1](../images/lab1.png)
 
 Here you can see:
