@@ -1,7 +1,17 @@
 # Environment Variables
 
+## Seeing Environment Variables
+
 ### 1.) To check the current environment variables one can use printenv or env. This outputs all the current environment variables for the system.
 ![printenv](../images/printenv.png)
 
 ### 2.) To change environment variables one can use export or unset. 
 ![export.png](../images/export.png)
+
+- here you can see I changed the shell from bash to sh.
+
+## Parent and Child EV inheritance 
+
+### 3.) Next I compiled and ran myprintenv.c and saved the output to file1. Then I commented the child process's env print and uncommented the parent's env print. Then I compiled and ran the file again, saving the output to file2. The using the diff command we can see the difference between the outputs.
+![parent_child.png](../images/parent_child.png)
+
