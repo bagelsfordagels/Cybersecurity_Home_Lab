@@ -38,3 +38,11 @@
 
 ### I then changed the owner of the program to root and made it into a set-UID program.
 ![chown_root.png](../images/chown_root.png)
+
+### Next, I used the export command tochange the PATH, LD_LIBRARY_PATH, and ANY_NAME environment variables.
+![export_names.png](../images/export_names.png)
+
+### Then, I ran the set-UID program to see if the child process has the same environment variables.
+![checkEV.png](../images/checkEV.png)
+
+- Using grep I can see that the PATH and ANY_NAME EV's were maintained but the LD_LIBRARY_PATH EV was not present.
