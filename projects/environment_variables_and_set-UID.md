@@ -21,3 +21,5 @@
 
 ### 1.) In this section I compiled and ran the myenv c program. When first running it the program outputs nothing. After changing the execve line to include the environ argument it then ouputs the environment variables.
 ![execve.png](../images/execve.png)
+
+- After chaning the NULL argument to environ in the execve line the program outputs the environment variables.
