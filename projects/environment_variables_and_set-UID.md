@@ -15,3 +15,4 @@
 ### 3.) Next I compiled and ran myprintenv.c and saved the output to file1. Then I commented the child process's env print and uncommented the parent's env print. Then I compiled and ran the file again, saving the output to file2. The using the diff command we can see the difference between the outputs.
 ![parent_child.png](../images/parent_child.png)
 
+- There is no difference between the outputs becuase parent and child processes have the same environment variables.
