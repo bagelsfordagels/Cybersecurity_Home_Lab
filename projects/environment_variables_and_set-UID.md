@@ -46,3 +46,15 @@
 ![checkEV.png](../images/checkEV.png)
 
 - Using grep I can see that the PATH and ANY_NAME EV's were maintained but the LD_LIBRARY_PATH EV was not present.
+
+## PATH EV and Set-UID
+
+### Using a system() call in a set-UID program is quite risky as a bad actor could change the PATH EV and have the program perform unintended actions.
+![evilPath.png](../images/evilPath.png)
+
+- Here I set the first path in the PATH EV as my own evil path.
+
+### I then created a c program using system("ls") to list out the contents of a directory. In the evil directory I created another program called ls and in this one I had my "malicious code". 
+![evil_ls.png](../images/evil_ls.png)
+
+- Becuse the system call was not an absolute path where it looked for the ls call could be manipulated. 
