@@ -85,3 +85,15 @@
 
 ![bob_myprog.png](../images/bob_myprog.png)
 - After changing the owner to bob and exporting the LD_PRELOAD again in my user account, the expected sleep function was called. Bob and mchughb id's differ so the countermeasure was applied.
+
+## System() vs Execve()
+### it is risky to use system() in a privaledged pogram becuase it invokes a shell to execute commands. On the other hand, execve() does not invoke a shell and is therefore safer to use.
+
+![catall.png](../images/catall.png)
+- This program provides privaledged cat access to files that a normal user cannot read. It either uses system() or execve() to execute the cat command. 
+
+![catall_setIUD.png](../images/catall_setUID.png)
+- I then made the catall.c a setUID program.
+
+![system_rm.png](../images/system_rm.png)
+- I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. The catall program is setUID so it has a EUID of 0 but when trying to run it as mchughb the os compared my non-root RUID with the EUID of catall and de-escalated priveladges.
