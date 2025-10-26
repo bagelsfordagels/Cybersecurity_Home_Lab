@@ -50,7 +50,7 @@
 ## PATH EV and Set-UID
 
 ### Using a system() call in a set-UID program is quite risky as a bad actor could change the PATH EV and have the program perform unintended actions.
-![evil_path.png](../images/evilPath.png)
+![evil_path.png](../images/evil_path.png)
 
 - Here I set the first path in the PATH EV as my own evil path.
 
