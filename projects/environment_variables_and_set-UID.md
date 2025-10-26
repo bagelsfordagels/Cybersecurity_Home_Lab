@@ -57,4 +57,4 @@
 ### I then created a c program using system("ls") to list out the contents of a directory. In the evil directory I created another program called ls and in this one I had my "malicious code". 
 ![evil_ls.png](../images/evil_ls.png)
 
-- Becuse the system call was not an absolute path where it looked for the ls call could be manipulated and use the ls program in my evil directory. 
+- Becuse the system call did not specify an absolute path for the command it could be manipulated to use the ls program in my evil directory. 
