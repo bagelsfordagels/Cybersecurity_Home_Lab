@@ -57,4 +57,31 @@
 ### I then created a c program using system("ls") to list out the contents of a directory. In the evil directory I created another program called ls and in this one I had my "malicious code". 
 ![evil_ls.png](../images/evil_ls.png)
 
-- Becuse the system call did not specify an absolute path for the command it could be manipulated to use the ls program in my evil directory. 
+- Becuse the system call did not specify an absolute path for the command it could be manipulated to use the ls program in my evil directory. The malicious program did not open a root shell due to countermeasures in Ubuntu.
+
+## LD_PRELOAD
+
+### By adding user defined libraries to the LD_PRELOAD one can force a program to look at these libraries before the standard libraries in linux. one can have a program call a user-defined function that performs unwanted actions. 
+![badSleep.png](../images/badSleep.png)
+- I created a c file that has its own sleep function with an undesired output.
+
+![mylib.png](../images/mylib.png)
+- Then, I compiled the program and added it to my shared libraries. 
+
+![LDadd.png](../images/LDadd.png)
+- Next, I added my custom library to the LD_PRELOAD EV
+
+![goodSleep.png](../images/goodSleep.png)
+- I created a c program that runs the expected sleep function.
+
+![normal_myprog.png](../images/normal_myprog.png)
+- Running the program as a normal user outputs my user-defined sleep function.
+
+![setUID_myprog](../images/setUID_myprog.png)
+- After making the program a set-UID program the expected sleep function was called due the dynamic linker countermeasures. The EUID != the RUID so the LD_PRELOAD library is ignored. 
+
+![root_myprog](../images/root_myprog.png)
+- Changing the owner of the program to root and adding my custom library in the root shell printed my user-defined ouput. This is because the EUID == RUID so the LD_PRELOAD library is used. 
+
+![bob_myprog.png](../images/bob_myprog.png)
+- After changing the owner to bob and exporting the LD_PRELOAD again in my user account, the expected sleep function was called. Bob and mchughb id's differ so the countermeasure was applied.
