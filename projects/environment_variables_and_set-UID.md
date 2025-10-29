@@ -20,7 +20,7 @@
 ## Execve
 
 ### In this section I compiled and ran the myenv c program. When first running it the program outputs nothing. After changing the execve line to include the environ argument it then ouputs the environment variables.
-![execve.png](../images/execve.png)
+![execve_environ.png](../images/execve_environ.png)
 
 - After chaning the NULL argument to environ in the execve line the program outputs the environment variables.
 
@@ -92,8 +92,11 @@
 ![catall.png](../images/catall.png)
 - This program provides privaledged cat access to files that a normal user cannot read. It either uses system() or execve() to execute the cat command. 
 
-![catall_setIUD.png](../images/catall_setUID.png)
-- I then made the catall.c a setUID program.
-
 ![system_rm.png](../images/system_rm.png)
-- I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. The catall program is setUID so it has a EUID of 0 but when trying to run it as mchughb the os compared my non-root RUID with the EUID of catall and de-escalated priveladges.
+- I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. The catall program is setUID so it has a EUID of 0 but when trying to run it as mchughb the os compared my non-root RUID with the EUID of catall and de-escalated priveladges. Therefore if another user like bob would not be able to remove a file that is not writable to them
+
+![exceve.png](../images/execve.png)
+- I then commented the system() call and uncommented the execve command. 
+
+![catall_execve_setUID.png](../images/catall_execve_setUID.png)
+- Then, I made the catall program root owned and a set-UID program again. This execve call is much more secure than the system() call so a bad actor would not be able to execute unwarrented commands. Execve() does not use a shell to execute so there is no way a user could get their commands to be executed. 
