@@ -8,7 +8,7 @@
 ### To change environment variables one can use export or unset. 
 ![export.png](../images/export.png)
 
-- here you can see I changed the shell from bash to sh.
+- Here you can see I changed the shell from bash to sh.
 
 ## Parent and Child EV inheritance 
 
@@ -26,20 +26,20 @@
 
 ## System
 
-### The System function is a vulnerability in C programs due to the way it executes system calls. It uses a sh shell to completed commands,  creating a potential attack vector. 
+### The System function is a vulnerability in C programs due to the way it executes system calls. It uses a sh shell to complete commands,  creating a potential attack vector. 
 ![system.c](../images/system.png)
 
 - Here I created a program that uses the system function to print the environment variables. 
 
 ## Set-UID
 
-### Set-UID programs allows users to execute privaladed operations as a non-root user. In this section I created a c file called uid_ev. This file simply prints the environment variables.
+### Set-UID programs allows users to execute privaleged programs as a normal user. In this section I created a c file called uid_ev. This file simply prints the environment variables.
 ![uid.png](../images/uid.png)
 
 ### I then changed the owner of the program to root and made it into a set-UID program.
 ![chown_root.png](../images/chown_root.png)
 
-### Next, I used the export command tochange the PATH, LD_LIBRARY_PATH, and ANY_NAME environment variables.
+### Next, I used the export command to change the PATH, LD_LIBRARY_PATH, and ANY_NAME environment variables.
 ![export_names.png](../images/export_names.png)
 
 ### Then, I ran the set-UID program to see if the child process has the same environment variables.
@@ -61,7 +61,7 @@
 
 ## LD_PRELOAD
 
-### By adding user defined libraries to the LD_PRELOAD one can force a program to look at these libraries before the standard libraries in linux. one can have a program call a user-defined function that performs unwanted actions. 
+### By adding user defined libraries to the LD_PRELOAD one can force a program to look at these libraries before the standard libraries in linux. One can have a program call a user-defined function that performs unwanted actions. 
 ![badSleep.png](../images/badSleep.png)
 - I created a c file that has its own sleep function with an undesired output.
 
@@ -87,19 +87,19 @@
 - After changing the owner to bob and exporting the LD_PRELOAD again in my user account, the expected sleep function was called. Bob and mchughb id's differ so the countermeasure was applied.
 
 ## System() vs Execve()
-### it is risky to use system() in a privaledged pogram becuase it invokes a shell to execute commands. On the other hand, execve() does not invoke a shell and is therefore safer to use.
+### it is risky to use system() in a privaledged pogram becuase it invokes a shell to execute commands. On the other hand, execve() does not invoke a shell and is therefore a safer alternative.
 
 ![catall.png](../images/catall.png)
 - This program provides privaledged cat access to files that a normal user cannot read. It either uses system() or execve() to execute the cat command. 
 
 ![system_rm.png](../images/system_rm.png)
-- I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. The catall program is setUID so it has a EUID of 0 but when trying to run it as mchughb the os compared my non-root RUID with the EUID of catall and de-escalated priveladges. Therefore if another user like bob would not be able to remove a file that is not writable to them
+- I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. The catall program is setUID so it has a EUID of 0 but when trying to run it as mchughb the os compared my non-root RUID with the EUID of catall and de-escalated priveladges. Therefore another user like bob would not be able to remove a file that is not writable to them.
 
 ![exceve.png](../images/execve.png)
 - I then commented the system() call and uncommented the execve command. 
 
 ![catall_execve_setUID.png](../images/catall_execve_setUID.png)
-- Then, I made the catall program root owned and a set-UID program again. This execve call is much more secure than the system() call so a bad actor would not be able to execute unwarrented commands. Execve() does not use a shell to execute so there is no way a user could get their commands to be executed. 
+- Then, I made the catall program root owned and a set-UID program again. This execve call is much more secure than the system() call so a bad actor would not be able to execute unwarranted commands. Execve() does not invoke a shell so there is no way a user could have their commands executed. 
 
 ## Capability Leaking
 ### After a set-UID program's privaledge is revoked, bad actors may still be able to execute unwanted commands via capability leaking. If a file descriptor is not closed in a program, then a user can inject commands into the file descriptor to exectute unwanted actions.
