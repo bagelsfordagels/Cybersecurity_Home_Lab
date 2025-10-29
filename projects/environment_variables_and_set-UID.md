@@ -100,3 +100,14 @@
 
 ![catall_execve_setUID.png](../images/catall_execve_setUID.png)
 - Then, I made the catall program root owned and a set-UID program again. This execve call is much more secure than the system() call so a bad actor would not be able to execute unwarrented commands. Execve() does not use a shell to execute so there is no way a user could get their commands to be executed. 
+
+## Capability Leaking
+### After a set-UID program's privaledge is revoked, bad actors may still be able to execute unwanted commands via capability leaking. If a file descriptor is not closed in a program, then a user can inject commands into the file descriptor to exectute unwanted actions.
+![zzz.png](../images/zzz.png)
+- First I created a file called zzz in the /etc/ directory. This file is owned by root and has 644 permission.  
+
+![cap_leak_setUID.png](../images/cap_leak_setUID.png)
+- The cap_leak program uses a file descriptor to read /etc/zzz and then downgrades the privaledge to the RUID. It then executes a sh shell with execve().
+
+![cap_leak_usingFd.png](../images/cap_leak_usingFd.png)
+- I ran cap_leak as a normal user and the program was able to cat zzz but it was not able to write to it directly. I then tried to to write to it using the file desctiptor but this was also unsucessful. This is likely due to the countermeasures in place.
