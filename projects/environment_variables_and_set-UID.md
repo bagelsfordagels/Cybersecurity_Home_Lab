@@ -93,7 +93,7 @@
 - This program provides privaledged cat access to files that a normal user cannot read. It either uses system() or execve() to execute the cat command. 
 
 ![system_rm.png](../images/system_rm.png)
-- I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. The catall program is setUID so it has a EUID of 0 but when trying to run it as mchughb the os compared my non-root RUID with the EUID of catall and de-escalated priveladges. Therefore another user like bob would not be able to remove a file that is not writable to them.
+- I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. In Ubuntu, set_UID programs de-escalate privaledge when the EUID does not match the RUID. Therefore another user like bob would not be able to remove a file that is not writable to them.
 
 ![exceve.png](../images/execve.png)
 - I then commented the system() call and uncommented the execve command. 
