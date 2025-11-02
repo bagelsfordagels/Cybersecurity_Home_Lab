@@ -17,16 +17,16 @@
 
 - There is no difference between the outputs becuase parent and child processes have the same environment variables.
 
-## Execve
+## Execve()
 
 ### In this section I compiled and ran the myenv c program. When first running it the program outputs nothing. After changing the execve line to include the environ argument it then ouputs the environment variables.
 ![execve_environ.png](../images/execve_environ.png)
 
 - After chaning the NULL argument to environ in the execve line the program outputs the environment variables.
 
-## System
+## System()
 
-### The System function is a vulnerability in C programs due to the way it executes system calls. It uses a sh shell to complete commands,  creating a potential attack vector. 
+### A system() call in C program is a potential attack vector becuase it opens a shell to execute commands. A bad actor could inject malicious commands into the shell to perform unwarrranted actions.
 ![system.c](../images/system.png)
 
 - Here I created a program that uses the system function to print the environment variables. 
@@ -36,7 +36,7 @@
 ### Set-UID programs allows users to execute privaleged programs as a normal user. In this section I created a c file called uid_ev. This file simply prints the environment variables.
 ![uid.png](../images/uid.png)
 
-### I then changed the owner of the program to root and made it into a set-UID program.
+### I then changed the owner of the program to root and made it a set-UID program.
 ![chown_root.png](../images/chown_root.png)
 
 ### Next, I used the export command to change the PATH, LD_LIBRARY_PATH, and ANY_NAME environment variables.
@@ -78,10 +78,10 @@
 - Running the program as a normal user outputs my user-defined sleep function.
 
 ![setUID_myprog](../images/setUID_myprog.png)
-- After making the program a set-UID program the expected sleep function was called due the dynamic linker countermeasures. The EUID != the RUID so the LD_PRELOAD library is ignored. 
+- After making the program a set-UID program the expected sleep function was called duo to countermeasures in Ubuntu. Because the program's EUID was 0 and it was run as a non root user the LD-PRELOAD library was ignored.
 
 ![root_myprog](../images/root_myprog.png)
-- Changing the owner of the program to root and adding my custom library in the root shell printed my user-defined ouput. This is because the EUID == RUID so the LD_PRELOAD library is used. 
+- Changing the owner of the program to root and adding my custom library in the root shell printed my user-defined ouput. This is because it was run as root so the EUID matched the RUID, using the LD_PRELOAD library.
 
 ![bob_myprog.png](../images/bob_myprog.png)
 - After changing the owner to bob and exporting the LD_PRELOAD again in my user account, the expected sleep function was called. Bob and mchughb id's differ so the countermeasure was applied.
@@ -96,7 +96,7 @@
 - I then made catall.c a setUID program and tried to read a file mchughb did not have read access to. The program was not able to read the file due to the countermeasures in place that check the EUID vs the RUID. In Ubuntu, set_UID programs de-escalate privaledge when the EUID does not match the RUID. Therefore another user like bob would not be able to remove a file that is not writable to them.
 
 ![exceve.png](../images/execve.png)
-- I then commented the system() call and uncommented the execve command. 
+- I then commented the system() call and uncommented the execve() command. 
 
 ![catall_execve_setUID.png](../images/catall_execve_setUID.png)
 - Then, I made the catall program root owned and a set-UID program again. This execve call is much more secure than the system() call so a bad actor would not be able to execute unwarranted commands. Execve() does not invoke a shell so there is no way a user could have their commands executed. 
@@ -110,4 +110,4 @@
 - The cap_leak program uses a file descriptor to read /etc/zzz and then downgrades the privaledge to the RUID. It then executes a sh shell with execve().
 
 ![cap_leak_usingFd.png](../images/cap_leak_usingFd.png)
-- I ran cap_leak as a normal user and the program was able to cat zzz but it was not able to write to it directly. I then tried to to write to it using the file desctiptor but this was also unsucessful. This is likely due to the countermeasures in place.
+- I ran cap_leak as a normal user and the program was able to cat zzz but it was not able to write to it directly. I then tried to to write to it using the file desctiptor but this was also unsucessful. This is due to the countermeasures in place.
