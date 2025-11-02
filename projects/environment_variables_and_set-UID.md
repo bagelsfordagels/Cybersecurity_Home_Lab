@@ -54,10 +54,17 @@
 
 - Here I set the first path in the PATH EV as my own evil path.
 
-### I then created a c program using system("ls") to list out the contents of a directory. In the evil directory I created another program called ls and in this one I had my "malicious code". 
-![evil_ls.png](../images/evil_ls.png)
+![good_ls.png](../images/good_ls.png)
 
-- Becuse the system call did not specify an absolute path for the command it could be manipulated to use the ls program in my evil directory. The malicious program did not open a root shell due to countermeasures in Ubuntu.
+- I created a program called ls that uses system() to call /bin/ls to list out the current files in a directory.
+
+![evil_ls_inDir.png](../images/evil_ls_inDir.png)
+
+- In the evil directory I created another program called ls that print "My evil code" instead of the expeted ls function call. It also checks the EUID and states if the program had root access.
+
+![evil_ls_worked.png](../images/evil_ls_worked.png)
+
+- After compiling the program, setting the owner to root, making it set-UID, and running it, the program used ls from my evil directory. The program had root access because I created a link to use the zsh shell instead of the sh shell. If I had not, the program would not have had a root shell due to countermeasures in Ubuntu.
 
 ## LD_PRELOAD
 
