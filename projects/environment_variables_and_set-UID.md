@@ -94,7 +94,7 @@
 - After changing the owner to bob and exporting the LD_PRELOAD again in my user account, the expected sleep function was called. Bob and mchughb id's differ so the countermeasure was applied.
 
 ## System() vs Execve()
-### it is risky to use system() in a privaledged pogram becuase it invokes a shell to execute commands. On the other hand, execve() does not invoke a shell and is therefore a safer alternative.
+### It is risky to use system() in a privaledged program becuase it invokes a shell to execute commands. On the other hand, execve() does not invoke a shell and is therefore a safer alternative.
 
 ![catall.png](../images/catall.png)
 - This program provides privaledged cat access to files that a normal user cannot read. It either uses system() or execve() to execute the cat command. 
@@ -106,7 +106,7 @@
 - I then commented the system() call and uncommented the execve() command. 
 
 ![catall_execve_setUID.png](../images/catall_execve_setUID.png)
-- Then, I made the catall program root owned and a set-UID program again. This execve call is much more secure than the system() call so a bad actor would not be able to execute unwarranted commands. Execve() does not invoke a shell so there is no way a user could have their commands executed. 
+- Then, I made the catall program root owned and a set-UID program again. This execve() call is much more secure than the system() call so a bad actor would not be able to execute unwarranted commands. Execve() does not invoke a shell so there is no way a user could have their commands executed. 
 
 ## Capability Leaking
 ### After a set-UID program's privaledge is revoked, bad actors may still be able to execute unwanted commands via capability leaking. If a file descriptor is not closed in a program, then a user can inject commands into the file descriptor to exectute unwanted actions.
