@@ -85,7 +85,7 @@
 - Running the program as a normal user outputs my user-defined sleep function.
 
 ![setUID_myprog](../images/setUID_myprog.png)
-- After making the program a set-UID program the expected sleep function was called duo to countermeasures in Ubuntu. Because the program's EUID was 0 and it was run as a non root user the LD-PRELOAD library was ignored.
+- After making the program a set-UID program the expected sleep function was called due to countermeasures in Ubuntu. Because the program's EUID was 0 and it was run as a non root user the LD-PRELOAD library was ignored.
 
 ![root_myprog](../images/root_myprog.png)
 - Changing the owner of the program to root and adding my custom library in the root shell printed my user-defined ouput. This is because it was run as root so the EUID matched the RUID, using the LD_PRELOAD library.
